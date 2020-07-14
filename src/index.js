@@ -46,7 +46,10 @@ function addListener(element) {
 }
 
 function buttonActivites(id) {
-  if (document.getElementById(id).innerHTML !== player) {
+  if (
+    document.getElementById(id).innerHTML !== "X" &&
+    document.getElementById(id).innerHTML !== "O"
+  ) {
     document.getElementById(id).innerHTML = player;
     addItemToArray(id, player);
     changeplayer();
@@ -83,7 +86,7 @@ function renderTablet() {
   for (var i = 1; i < SizeofBoard + 1; i++) {
     let row = document.createElement("tr");
     for (var j = 1; j < SizeofBoard + 1; j++) {
-      let element = document.createElement("th");
+      let element = document.createElement("td");
       element.setAttribute("id", i.toString() + "-" + j.toString());
       console.log(i.toString() + j.toString());
       addListener(element);
