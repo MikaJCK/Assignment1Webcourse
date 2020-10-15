@@ -46,18 +46,14 @@ function addListener(element) {
 }
 
 function buttonActivites(id) {
-  if (
-    document.getElementById(id).innerHTML !== "X" &&
-    document.getElementById(id).innerHTML !== "O"
-  ) {
+  if (document.getElementById(id).innerHTML !== player) {
     document.getElementById(id).innerHTML = player;
-    //document.getElementById(id).color = "rgb(124, 252, 0)";
     addItemToArray(id, player);
     changeplayer();
   }
 
   if (checkWinner(array) === 1) {
-    //window.setTimeout(clearBoard, 2000);
+    window.setTimeout(clearBoard, 2000);
   }
 }
 
@@ -71,11 +67,6 @@ function clearBoard() {
 }
 
 function addItemToArray(id, symbol) {
-  if (symbol === "O") {
-    //document.getElementById(id).style.backgroundColor = "rgb(250, 128, 114)";
-  } else if (symbol === "X") {
-    //document.getElementById(id).style.backgroundColor = "rgb(124, 252, 0)";
-  }
   var splits = id.split("-");
   array[splits[0] - 1][splits[1] - 1] = symbol;
 }
@@ -92,7 +83,7 @@ function renderTablet() {
   for (var i = 1; i < SizeofBoard + 1; i++) {
     let row = document.createElement("tr");
     for (var j = 1; j < SizeofBoard + 1; j++) {
-      let element = document.createElement("td");
+      let element = document.createElement("th");
       element.setAttribute("id", i.toString() + "-" + j.toString());
       console.log(i.toString() + j.toString());
       addListener(element);
@@ -190,10 +181,10 @@ function checkWinner(array2d) {
       }
     }
     if (int === SizeofBoard) {
-      alert("Player 1 won!");
+      alert("X wins");
       return 1;
     } else if (int === -SizeofBoard) {
-      alert("Player 2 won!");
+      alert("O wins");
       return 1;
     }
   }
